@@ -11,17 +11,18 @@ TREES = set(samples["tree"].tolist())
 
 
 SUBUNITS_DATA = expand(
-    "{data_dir}/{subunit}_eukaryota.fasta.gz",
+    "{data_dir}/{subunit}_{organism}.fasta.gz",
     data_dir = get_path(config['data'], 'raw'),
-    subunit = ["SSU", "LSU"]
+    subunit = ["SSU", "LSU"],
+    organism = ["fungi", "trees"]
 )
 
 SUBUNITS_TAXONOMY = expand(
-    "{data_dir}/{subunit}_eukaryota.txt.gz",
+    "{data_dir}/{subunit}_{organism}_ids.txt.gz",
     data_dir = get_path(config['data'], 'taxonomy'),
-    subunit = ["SSU", "LSU"]
+    subunit = ["SSU", "LSU"],
+    organism = ["fungi", "trees"]
 )
-
 
 rule all:
     input:
