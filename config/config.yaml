@@ -17,6 +17,7 @@ data:
    - Alnus
   dirs:
     raw: "raw"
+    taxonomy: "taxonomy"
 
 workflow:
   base_root: "workflow"

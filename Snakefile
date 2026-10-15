@@ -11,14 +11,22 @@ TREES = set(samples["tree"].tolist())
 
 
 SUBUNITS_DATA = expand(
-    "{raw_fata}/{subunit}_eukaryota.fasta.gz",
-    raw_fata = get_path(config['data'], 'raw'),
+    "{data_dir}/{subunit}_eukaryota.fasta.gz",
+    data_dir = get_path(config['data'], 'raw'),
     subunit = ["SSU", "LSU"]
 )
 
+SUBUNITS_TAXONOMY = expand(
+    "{data_dir}/{subunit}_eukaryota.txt.gz",
+    data_dir = get_path(config['data'], 'taxonomy'),
+    subunit = ["SSU", "LSU"]
+)
+
+
 rule all:
     input:
-        SUBUNITS_DATA
+        SUBUNITS_DATA,
+        SUBUNITS_TAXONOMY
         
 RULES_DIR = get_path(config['workflow'], "rules")
 
