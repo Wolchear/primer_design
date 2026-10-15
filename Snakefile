@@ -10,23 +10,15 @@ samples = pd.read_csv("config/samples.csv")
 TREES = set(samples["tree"].tolist())
 
 
-SUBUNITS_RAW = expand(
-    "{raw_fata}/{subunit}.fasta.gz",
+SUBUNITS_DATA = expand(
+    "{raw_fata}/{subunit}_eukaryota.fasta.gz",
     raw_fata = get_path(config['data'], 'raw'),
     subunit = ["SSU", "LSU"]
 )
 
-ORGANISMS_RAW = expand(
-    "{raw_fata}/{subunit}_{organism}.fasta.gz",
-    raw_fata = get_path(config['data'], 'raw'),
-    subunit = ["SSU", "LSU"],
-    organism = ['fungi', 'trees']
-)
-
 rule all:
     input:
-        SUBUNITS_RAW,
-        ORGANISMS_RAW
+        SUBUNITS_DATA
         
 RULES_DIR = get_path(config['workflow'], "rules")
 
